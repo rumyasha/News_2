@@ -5,7 +5,6 @@ from django.core.cache import cache
 from datetime import datetime, timedelta
 import aiohttp
 from bs4 import BeautifulSoup
-import asyncio
 
 
 class KaktusNewsMixin:

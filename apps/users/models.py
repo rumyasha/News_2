@@ -1,6 +1,8 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 
 class CustomUserManager(BaseUserManager):
@@ -22,6 +24,14 @@ class CustomUserManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
         return self.create_user(email, password, **extra_fields)
+
+
+
+class User(AbstractUser):
+    class Meta:
+        db_table = 'auth_user'
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):

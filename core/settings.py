@@ -3,6 +3,7 @@ from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
 
+
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,15 +15,15 @@ DEBUG = os.getenv('DEBUG')
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
 
-
 MY_APPS = [
-    'apps.news',
-    'apps.users',
+    'users.apps.UsersConfig',
+    'news.apps.NewsConfig',  # Добавьте эту строку
 ]
 THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'django_filters',
+    'import_export',
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -120,8 +121,8 @@ SIMPLE_JWT = {
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_TIMEZONE = 'Asia/Bishkek'
+AUTH_USER_MODEL = 'users.User'
 
-# DRF
 
 LANGUAGE_CODE = 'ru'
 
