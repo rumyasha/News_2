@@ -34,16 +34,31 @@ class User(AbstractUser):
         verbose_name_plural = 'Users'
 
 
-class CustomUser(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(max_length=255, unique=True)
-    username = None
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-    date_joined = models.DateTimeField(auto_now_add=True)
-    objects = CustomUserManager()
+from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.db import models
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
 
-    def __str__(self):
-        return self.email
+class CustomUser(AbstractUser):
+
+
+    class Meta:
+        db_table = 'custom_users'
+        verbose_name = 'Custom User'
+        verbose_name_plural = 'Custom Users'
+
+    groups = models.ManyToManyField(
+        Group,
+        verbose_name='groups',
+        blank=True,
+        help_text='The groups this user belongs to.',
+        related_name='customuser_set',
+        related_query_name='customuser',
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        verbose_name='user permissions',
+        blank=True,
+        help_text='Specific permissions for this user.',
+        related_name='customuser_set',
+        related_query_name='customuser',
+    )
