@@ -47,13 +47,6 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'core.urls'
 
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'news-cache',
-    }
-}
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

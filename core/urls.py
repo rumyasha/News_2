@@ -11,9 +11,7 @@ urlpatterns = [
 
     path('api/users/', include('apps.users.urls')),
 
-    path('api/', include('apps.news.urls')),
-    path('api/auth/', include('rest_framework.urls')),
-
+    path('api/news/', include('apps.news.urls')),
     # Документация
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),

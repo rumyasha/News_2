@@ -1,10 +1,10 @@
-from celery import shared_task
+
 from .parsers import KaktusMediaParser
 from django.core.cache import cache
 import asyncio
 
 
-@shared_task
+
 def parse_kaktus_news_task():
     """Celery задача для парсинга новостей"""
 

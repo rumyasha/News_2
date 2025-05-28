@@ -1,4 +1,3 @@
-# news/views.py
 from django.http import JsonResponse
 from django.views import View
 from django.core.cache import cache
