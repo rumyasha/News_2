@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-from django.http import JsonResponse
-from django.views import View
-from django.core.cache import cache
-=======
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from .parsers import KaktusMediaParser
->>>>>>> b9fc818 (fafsa)
 from datetime import datetime, timedelta
 import asyncio
 

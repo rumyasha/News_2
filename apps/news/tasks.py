@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-
-=======
-#tasks
-from celery import shared_task
->>>>>>> b9fc818 (fafsa)
 from .parsers import KaktusMediaParser
 from django.core.cache import cache
 import asyncio
