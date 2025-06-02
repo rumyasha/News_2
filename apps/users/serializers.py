@@ -1,39 +1,32 @@
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
-from django.core import exceptions
-
-User = get_user_model()
-
+from .models import CustomUser
 
 class UserSerializer(serializers.ModelSerializer):
+    """Сериализатор для регистрации и профиля"""
     password = serializers.CharField(write_only=True, required=True)
-    password_confirmation = serializers.CharField(write_only=True, required=True)
+    password_confirm = serializers.CharField(write_only=True, required=True)
 
     class Meta:
-        model = User
-        fields = ['id', 'email', 'password', 'password_confirmation',
-                  'first_name', 'last_name']
+        model = CustomUser
+        fields = ['id', 'email', 'first_name', 'last_name', 'password', 'password_confirm']
         extra_kwargs = {
             'first_name': {'required': True},
             'last_name': {'required': True}
         }
 
     def validate(self, attrs):
-        if attrs['password'] != attrs['password_confirmation']:
-            raise serializers.ValidationError(
-                {"password": "Password fields didn't match."}
-            )
-
-        user = User(**attrs)
-        try:
-            validate_password(attrs['password'], user)
-        except exceptions.ValidationError as e:
-            raise serializers.ValidationError({"password": list(e.messages)})
-
+        if attrs['password'] != attrs['password_confirm']:
+            raise serializers.ValidationError({"password": "Пароли не совпадают"})
+        validate_password(attrs['password'])
         return attrs
 
     def create(self, validated_data):
-        validated_data.pop('password_confirmation')
-        user = User.objects.create_user(**validated_data)
+        validated_data.pop('password_confirm')
+        user = CustomUser.objects.create_user(**validated_data)
         return user
+
+class LoginSerializer(serializers.Serializer):
+    """Сериализатор для входа"""
+    email = serializers.EmailField(required=True)
+    password = serializers.CharField(write_only=True, required=True)

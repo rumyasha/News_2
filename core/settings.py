@@ -4,6 +4,7 @@ from datetime import timedelta
 from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
 load_dotenv()
 
 SECRET_KEY = os.getenv('SECRET_KEY')
@@ -17,6 +18,7 @@ MY_APPS = [
     'apps.users',
     'apps.news',
 ]
+
 THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
@@ -24,6 +26,7 @@ THIRD_PARTY_APPS = [
     'import_export',
     'drf_spectacular',
 ]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -31,8 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-] + MY_APPS + THIRD_PARTY_APPS
-
+] + THIRD_PARTY_APPS + MY_APPS  # Порядок важен
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -43,6 +45,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'core.urls'
 
@@ -106,6 +109,7 @@ REST_FRAMEWORK = {
 }
 
 
+
 SPECTACULAR_SETTINGS = {
     'TITLE': 'News Aggregator API',
     'DESCRIPTION': 'News',
@@ -125,7 +129,7 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_TIMEZONE = 'Asia/Bishkek'
 
 
-AUTH_USER_MODEL = "users.CustomUser"
+AUTH_USER_MODEL = 'users.CustomUser'
 
 
 LANGUAGE_CODE = 'ru'

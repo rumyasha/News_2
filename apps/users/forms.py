@@ -1,20 +1,12 @@
-from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.core.exceptions import ValidationError
-from .models import User
+from .models import CustomUser  # Изменяем User на CustomUser
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
-        model = User
-        fields = ('email', 'first_name', 'last_name')
-
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if User.objects.filter(email=email).exists():
-            raise ValidationError("This email is already in use.")
-        return email
+        model = CustomUser  # Используем CustomUser
+        fields = ('email',)  # Только email при регистрации
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
-        model = User
+        model = CustomUser  # Используем CustomUser
         fields = '__all__'
