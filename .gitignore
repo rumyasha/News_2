@@ -1,0 +1,83 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+test-results/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+
+# Django migrations
+*/migrations/*.py
+*/migrations/*.pyc
+
+# DRF-specific files (nothing special for DRF itself, just Django!)
+# But in case you generate API docs:
+docs/_build/
+
+# PyCharm / VS Code
+.idea/
+.vscode/
+
+# mypy / pyre / pytype
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+
+# envs
+venv/
+ENV/
+env/
+.venv/
